@@ -5,7 +5,14 @@ export class CategoryService {
   constructor(private readonly categoryModel = CategoryModel) {}
 
   public async findAll() {
-    const categories = await this.categoryModel.find().populate('parent');
+    const categories = await this.categoryModel
+      .find(
+        {},
+        {
+          __v: false,
+        }
+      )
+      .populate('parent');
     return categories;
   }
 

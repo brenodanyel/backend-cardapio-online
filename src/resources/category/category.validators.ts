@@ -1,4 +1,5 @@
 import { body, header, param } from 'express-validator';
+
 import { expressValidator } from '../../middlewares/express-validator';
 
 export class CategoryValidators {

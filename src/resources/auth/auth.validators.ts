@@ -1,4 +1,5 @@
 import { body, header } from 'express-validator';
+
 import { expressValidator } from '../../middlewares/express-validator';
 
 export class AuthValidators {

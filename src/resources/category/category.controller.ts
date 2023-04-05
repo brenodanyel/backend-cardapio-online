@@ -5,10 +5,10 @@ import { CategoryService } from './category.service';
 export class CategoryController {
   constructor(private categoryService = new CategoryService()) {}
 
-  public findAll: RequestHandler = async (req, res, next) => {
+  public findAll: RequestHandler = async (_req, res, next) => {
     try {
       const categories = await this.categoryService.findAll();
-      res.status(200).json({ categories });
+      res.status(200).json(categories);
     } catch (e) {
       next(e);
     }

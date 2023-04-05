@@ -51,6 +51,7 @@ export class AuthService {
 
       const user = this.userModel.findById(decoded.id, {
         password: false,
+        __v: false,
       });
 
       return user;
