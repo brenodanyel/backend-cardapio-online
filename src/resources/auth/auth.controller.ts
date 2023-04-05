@@ -13,4 +13,14 @@ export class AuthController {
       next(e);
     }
   };
+
+  public login: RequestHandler = async (req, res, next) => {
+    try {
+      const { username, password } = req.body;
+      const token = await this.authService.login(username, password);
+      res.status(200).json({ token });
+    } catch (e) {
+      next(e);
+    }
+  };
 }
