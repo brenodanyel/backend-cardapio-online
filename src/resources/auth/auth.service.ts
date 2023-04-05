@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
 
-import { ConflictError, NotFoundError } from '../../utils/custom-error';
+import { BadRequestError, ConflictError, NotFoundError } from '../../utils/custom-error';
 import { UserModel, UserDocument } from '../../database/models/user.model';
 
 const { JWT_SECRET = 'ultra_secret_key' } = process.env;
@@ -42,5 +42,20 @@ export class AuthService {
     }
 
     return this.generateToken(user);
+  }
+
+  public verifyToken(rawToken: string) {
+    try {
+      const [, token] = rawToken.split(' ');
+      const decoded = jwt.verify(token, JWT_SECRET) as jwt.JwtPayload;
+
+      const user = this.userModel.findById(decoded.id, {
+        password: false,
+      });
+
+      return user;
+    } catch (error) {
+      throw new BadRequestError('Invalid token');
+    }
   }
 }

@@ -6,6 +6,7 @@ export class AuthRoutes {
   public router: Router = Router();
 
   constructor(private validator = new AuthValidators(), private controller = new AuthController()) {
+    this.router.route('/verify').get(this.validator.verifyToken, this.controller.verifyToken);
     this.router.route('/register').post(this.validator.register, this.controller.register);
     this.router.route('/login').post(this.validator.login, this.controller.login);
   }

@@ -23,4 +23,14 @@ export class AuthController {
       next(e);
     }
   };
+
+  public verifyToken: RequestHandler = async (req, res, next) => {
+    try {
+      const { authorization } = req.headers;
+      const user = await this.authService.verifyToken(String(authorization));
+      res.status(200).json({ user });
+    } catch (e) {
+      next(e);
+    }
+  };
 }

@@ -1,7 +1,12 @@
-import { body } from 'express-validator';
+import { body, header } from 'express-validator';
 import { expressValidator } from '../../middlewares/express-validator';
 
 export class AuthValidators {
+  public verifyToken = [
+    header('authorization').isString().withMessage('Authorization header must be a string'),
+    expressValidator,
+  ];
+
   public register = [
     body('username')
       .isString()
