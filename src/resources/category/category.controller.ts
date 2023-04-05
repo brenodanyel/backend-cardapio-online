@@ -23,4 +23,25 @@ export class CategoryController {
       next(e);
     }
   };
+
+  public update: RequestHandler = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const { name, parentId } = req.body;
+      const category = await this.categoryService.update(id, { name, parentId });
+      res.status(200).json({ category });
+    } catch (e) {
+      next(e);
+    }
+  };
+
+  public delete: RequestHandler = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      await this.categoryService.delete(id);
+      res.status(204).end();
+    } catch (e) {
+      next(e);
+    }
+  };
 }

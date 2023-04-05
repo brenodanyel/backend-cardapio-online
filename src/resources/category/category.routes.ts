@@ -13,5 +13,10 @@ export class CategoryRoutes {
       .route('/')
       .get(this.controller.findAll)
       .post(this.validator.create, this.controller.create);
+
+    this.router
+      .route('/:id')
+      .patch(this.validator.update, this.controller.update)
+      .delete(this.validator.delete, this.controller.delete);
   }
 }
