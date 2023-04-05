@@ -1,10 +1,11 @@
 import 'dotenv/config';
-import express from 'express';
 
-const app = express();
+import { connectToDatabase } from './database';
+import { app } from './app';
 
 const { PORT = 3000 } = process.env;
 
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
+connectToDatabase()
+  .then(() => app.listen(PORT))
+  .then(() => console.log(`Server is listening on port ${PORT}`))
+  .catch(console.error);
