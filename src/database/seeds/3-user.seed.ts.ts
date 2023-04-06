@@ -9,7 +9,7 @@ export default async function seedProducts() {
     },
   ];
 
-  await UserModel.deleteMany();
+  // await UserModel.deleteMany();
 
   for (const user of users) {
     let dbUser = await UserModel.findOne({ username: user.username });
@@ -18,6 +18,4 @@ export default async function seedProducts() {
       await dbUser.save();
     }
   }
-
-  console.log(await UserModel.find({}));
 }
