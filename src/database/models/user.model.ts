@@ -1,9 +1,9 @@
 import { model, Schema, Document } from 'mongoose';
 
-export interface User {
+export type User = {
   username: string;
   password: string;
-}
+};
 
 export type UserDocument = User & Document;
 

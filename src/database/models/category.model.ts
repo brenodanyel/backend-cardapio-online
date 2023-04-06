@@ -1,9 +1,9 @@
 import { model, Schema, Document } from 'mongoose';
 
-export interface Category {
+export type Category = {
   parent: Category | null;
   name: string;
-}
+};
 
 export type CategoryDocument = Category & Document;
 

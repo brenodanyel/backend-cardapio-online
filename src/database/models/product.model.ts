@@ -1,12 +1,12 @@
 import { model, Schema, Document } from 'mongoose';
 import { Category } from './category.model';
 
-interface Product {
+export type Product = {
   categories: Category[];
   name: string;
   qty: number;
   price: number;
-}
+};
 
 type ProductDocument = Product & Document;
 
